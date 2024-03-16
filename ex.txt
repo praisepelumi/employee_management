@@ -1,0 +1,49 @@
+To establish a one-to-many relationship between the department and employees tables in your schema, you should modify the structure of the department table. Specifically, you need to remove the employee_id column from the department table and instead, include a foreign key column in the employees table that references the id column of the department table.
+
+Here's the revised schema with the necessary changes:
+
+sql
+Copy code
+Table employees {
+  id serial primary key,
+  first_name varchar,
+  last_name varchar,
+  email varchar,
+  title varchar,
+  department_id integer, -- Foreign key referencing department.id
+  salary money
+}
+
+Table department {
+  id serial primary key,
+  department_name varchar
+}
+In this updated schema:
+
+The employees table includes a department_id column, which serves as a foreign key referencing the id column of the department table. This establishes a one-to-many relationship between departments and employees, as one department can have multiple employees, but each employee belongs to only one department.
+The department table retains its primary key column id, which uniquely identifies each department, and includes a department_name column to store the name of each department.
+With this structure, you can easily query the employees table to retrieve employees belonging to a specific department by joining it with the department table using the department_id foreign key. This design ensures data integrity and allows for efficient management of department-employee relationships in your database.
+
+
+Importing Required Modules:
+
+import pg from 'pg';: This imports the 'pg' module, which is a PostgreSQL client for Node.js. It allows you to interact with a PostgreSQL database.
+{ QueryResult } from 'pg';: This imports the QueryResult interface from the 'pg' module. QueryResult represents the result of a query executed by the PostgreSQL client.
+Accessing Environment Variables:
+
+const { PG_URI } = process.env;: This line extracts the value of the PG_URI environment variable from the process.env object. Environment variables store sensitive information like database connection details.
+Creating a Connection Pool:
+
+const { Pool } = pg;: This line extracts the Pool class from the 'pg' module. Pool is used to manage a pool of PostgreSQL client connections.
+const pool = new Pool({ connectionString: PG_URI });: This creates a new instance of Pool with the connection string obtained from the PG_URI environment variable. The connection string contains information about how to connect to the PostgreSQL database.
+Defining a Query Function:
+
+const query = (text, params) => { return pool.query(text, params); };: This defines a function named query. It takes two parameters: text, which represents the SQL query string, and params, an array containing parameter values for the query (if any). Inside the function, it calls the query method of the connection pool (pool.query()) to execute the SQL query.
+Exporting the Query Function:
+
+export default query;: This line exports the query function as the default export of this module. It means that when you import this module in another file, you can import it using import query from './filename';, where './filename' is the path to this module file.
+Overall, this code sets up a connection pool to a PostgreSQL database using the 'pg' module, defines a function to execute SQL queries, and exports that function for use in other modules. It provides a convenient way to perform database queries in a Node.js application.
+
+
+
+psql -U username -d database_name -f db_init.sql
