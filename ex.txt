@@ -47,3 +47,5 @@ Overall, this code sets up a connection pool to a PostgreSQL database using the 
 
 
 psql -U username -d database_name -f db_init.sql
+
+psql -U postgres -d employees -f db_init.sql
