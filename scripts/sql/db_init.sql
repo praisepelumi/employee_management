@@ -1,3 +1,8 @@
+CREATE TABLE "department" (
+  "id" SERIAL PRIMARY KEY,
+  "department_name" VARCHAR(255) UNIQUE NOT NULL
+);
+
 CREATE TABLE "employees" (
   "id" SERIAL PRIMARY KEY,
   "first_name" VARCHAR(255),
@@ -7,28 +12,21 @@ CREATE TABLE "employees" (
   "department_id" INTEGER NOT NULL REFERENCES department(id)
 );
 
-CREATE TABLE "department" (
-  "id" SERIAL PRIMARY KEY,
-  "department_name" VARCHAR(255) UNIQUE NOT NULL
-);
-
 CREATE TABLE "salaries" (
-  "id" SERIAL PRIMARY KEY,
-  "employee_id" integer NOT NULL REFERENCES employees(id) UNIQUE,
-  "salary" MONEY
-  
+  "salary" MONEY,
+  "employee_id" INTEGER NOT NULL REFERENCES employees(id)
 );
 
 CREATE TABLE "historical_salaries" (
   "id" SERIAL PRIMARY KEY,
-  "employee_id" integer NOT NULL REFERENCES employees(id),
   "salary" MONEY,
-  "effective_date" DATE
+  "effective_date" DATE,
+  "employee_id" INTEGER NOT NULL REFERENCES employees(id)
 );
 
-ALTER TABLE "employees" ADD FOREIGN KEY ("department_id") REFERENCES "department" ("id");
+ALTER TABLE "employees" ADD CONSTRAINT "FK_department_id" FOREIGN KEY ("department_id") REFERENCES "department" ("id");
 
-ALTER TABLE "salaries" ADD FOREIGN KEY ("employee_id") REFERENCES "employees" ("id");
+ALTER TABLE "salaries" ADD CONSTRAINT "FK_salaries_employees" FOREIGN KEY ("employee_id") REFERENCES "employees" ("id");
 
-ALTER TABLE "historical_salaries" ADD FOREIGN KEY ("employee_id") REFERENCES "employees" ("id");
+ALTER TABLE "historical_salaries" ADD CONSTRAINT "FK_historical_salaries_employees" FOREIGN KEY ("employee_id") REFERENCES "employees" ("id");
 
