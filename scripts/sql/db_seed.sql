@@ -14,3 +14,4 @@ INSERT INTO salaries   (employee_id, salary) VALUES
 INSERT INTO historical_salaries (id, employee_id, salary, effective_date) VALUES
                                 (1, 1, 125000,'2024-03-16'),
                                 (2, 2, 150000, '2022-01-24');
+

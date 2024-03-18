@@ -1,15 +1,11 @@
-import pg from 'pg';
-import { QueryResult } from 'pg';
-const { PG_URI } = process.env;
-const { Pool } = pg;
-import 'dotenv/config';
+import pg from "pg";
 
+const Pool = pg.Pool;
 const pool = new Pool({
-  connectionString: PG_URI,
+  user: "postgres",
+  host: "localhost",
+  database: "employees",
+  port: 5432,
 });
 
-const query = (text, params) => {
-  return pool.query(text, params);
-};
-
-export default query;
+export default pool;

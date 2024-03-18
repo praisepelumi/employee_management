@@ -24,9 +24,11 @@ CREATE TABLE "historical_salaries" (
   "employee_id" INTEGER NOT NULL REFERENCES employees(id)
 );
 
+-- Create sequence for auto-incrementing id
+CREATE SEQUENCE "employees_id_seq";
+
 ALTER TABLE "employees" ADD CONSTRAINT "FK_department_id" FOREIGN KEY ("department_id") REFERENCES "department" ("id");
 
 ALTER TABLE "salaries" ADD CONSTRAINT "FK_salaries_employees" FOREIGN KEY ("employee_id") REFERENCES "employees" ("id");
 
 ALTER TABLE "historical_salaries" ADD CONSTRAINT "FK_historical_salaries_employees" FOREIGN KEY ("employee_id") REFERENCES "employees" ("id");
-
