@@ -20,11 +20,9 @@ function Table({ allEmployees, setAllEmployees }) {
         throw new Error("Failed to delete employee");
       }
 
-      setAllEmployees((prevState) => {
-        return prevState.filter((employee) => {
-          employee.employee_id !== employeeId;
-        });
-      });
+      setAllEmployees((prevState) =>
+        prevState.filter((employee) => employee.employee_id !== employeeId)
+      );
 
       console.log("Employee deleted successfully");
     } catch (error) {

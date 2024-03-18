@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 // eslint-disable-next-line react/prop-types
-function Add({ allEmployees }) {
+function Add({ setAllEmployees }) {
   const [employeeId, setEmployeeId] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -32,7 +32,10 @@ function Add({ allEmployees }) {
       });
 
       const data = await response.json();
-      allEmployees.push(data);
+
+      if (data) {
+        setAllEmployees((prevState) => [...prevState, data]);
+      }
     } catch (err) {
       console.log(err);
     }

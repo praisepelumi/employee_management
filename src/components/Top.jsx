@@ -84,7 +84,7 @@ function Top() {
       {!allEmployees.length ? (
         <p>Loading...</p>
       ) : (
-        <Add allEmployees={allEmployees} />
+        <Add allEmployees={allEmployees} setAllEmployees={setAllEmployees} />
       )}
       {error && <p>Error: {error}</p>}
     </div>

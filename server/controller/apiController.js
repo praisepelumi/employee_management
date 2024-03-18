@@ -83,7 +83,7 @@ const apiController = {
     try {
       const deleteQuery = "DELETE FROM salaries WHERE employee_id = $1";
       const data = await pool.query(deleteQuery, [id]);
-      console.log(data);
+      console.log(" i should delete");
       return next();
     } catch (error) {
       return next({
