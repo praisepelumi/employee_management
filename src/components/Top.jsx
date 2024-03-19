@@ -29,7 +29,6 @@ function Top() {
       setError(err.message);
     }
   };
-  console.log("okayy");
 
   // This gets an employee by their ID when you search
   const getByEmployeeId = async (e) => {
@@ -58,35 +57,48 @@ function Top() {
 
   return (
     <div>
-      <p>Please select an option</p>
-      <button onClick={getAllEmployees}>View All Employees</button>
+      <div
+      // style={{
+      //   position: "absolute",
+      //   // top: "50%",
+      //   // left: "50%",
+      //   // transform: "translate(-50%, -50%)",
+      // }}
+      >
+        <h2>Family Service League Employee Management System</h2>
+        <p>Please select an option</p>
+        <button onClick={getAllEmployees}>View All Employees</button>
 
-      <form onSubmit={getByEmployeeId}>
-        <input
-          type="text"
-          placeholder="Enter employee ID"
-          value={employeeId}
-          onChange={(e) => setEmployeeId(e.target.value)}
-        />
-        <button type="submit">Search</button>
-      </form>
+        <form onSubmit={getByEmployeeId}>
+          <input
+            type="text"
+            placeholder="Enter employee ID"
+            value={employeeId}
+            onChange={(e) => setEmployeeId(e.target.value)}
+          />
+          <button type="submit">Search</button>
+        </form>
 
-      {error && <p>Error: {error}</p>}
+        {error && <p>Error: {error}</p>}
 
-      {allEmployees && (
-        <Table allEmployees={allEmployees} setAllEmployees={setAllEmployees} />
-      )}
-      {/* {!allEmployees.length ? (
+        {allEmployees && (
+          <Table
+            allEmployees={allEmployees}
+            setAllEmployees={setAllEmployees}
+          />
+        )}
+        {/* {!allEmployees.length ? (
         <p>Loading...</p>
       ) : (
         <Table allEmployees={allEmployees} setAllEmployees={setAllEmployees} />
       )} */}
-      {!allEmployees.length ? (
-        <p>Loading...</p>
-      ) : (
-        <Add allEmployees={allEmployees} setAllEmployees={setAllEmployees} />
-      )}
-      {error && <p>Error: {error}</p>}
+        {!allEmployees.length ? (
+          <p>Loading...</p>
+        ) : (
+          <Add allEmployees={allEmployees} setAllEmployees={setAllEmployees} />
+        )}
+        {error && <p>Error: {error}</p>}
+      </div>
     </div>
   );
 }

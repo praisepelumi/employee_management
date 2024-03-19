@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-// import "./Table.css";
+import "../../src/Table.css";
 
 function Table({ allEmployees, setAllEmployees }) {
   const deleteEmployee = async (employeeId) => {
@@ -60,8 +60,21 @@ function Table({ allEmployees, setAllEmployees }) {
   // }
 
   return (
-    <table cellSpacing="">
-      <thead>
+    <table
+      cellSpacing="20"
+      style={{
+        borderCollapse: "collapse",
+        width: "100%",
+        border: "1px solid black",
+      }}
+    >
+      <thead
+        style={{
+          border: "1px solid black",
+          padding: "15px",
+          textAlign: "center",
+        }}
+      >
         <tr>
           <th>Employee ID</th>
           <th>First Name</th>
@@ -104,7 +117,7 @@ function Table({ allEmployees, setAllEmployees }) {
 
       <tfoot>
         <tr>
-          <td colSpan="7">
+          <td colSpan="8">
             <hr />
           </td>
         </tr>
