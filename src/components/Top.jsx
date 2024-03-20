@@ -92,12 +92,13 @@ function Top() {
       ) : (
         <Table allEmployees={allEmployees} setAllEmployees={setAllEmployees} />
       )} */}
-        {!allEmployees.length ? (
+        <Add allEmployees={allEmployees} setAllEmployees={setAllEmployees} />
+        {/* {!allEmployees.length ? (
           <p>Loading...</p>
         ) : (
           <Add allEmployees={allEmployees} setAllEmployees={setAllEmployees} />
         )}
-        {error && <p>Error: {error}</p>}
+        {error && <p>Error: {error}</p>} */}
       </div>
     </div>
   );

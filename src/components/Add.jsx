@@ -32,13 +32,10 @@ function Add({ setAllEmployees }) {
       });
 
       const data = await response.json();
-      if (data) {
-        console.log("yesssirrrr");
-        console.log(data);
-      }
 
       if (data) {
-        setAllEmployees((prevState) => [...prevState, data]);
+        // setAllEmployees((prevState) => [...prevState, data]);
+        setAllEmployees((prevState) => prevState.concat(data));
       }
     } catch (err) {
       console.log(err);

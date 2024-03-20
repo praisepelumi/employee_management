@@ -1,7 +1,7 @@
 import express, { json, urlencoded } from "express";
 import cookieParser from "cookie-parser";
 const PORT = 8080;
-import apiController from "./routes/employee.js";
+import apiRouter from "./routes/employee.js";
 const app = express();
 
 app.use(json({ limit: "50mb" }));
@@ -19,7 +19,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use("/api", apiController);
+app.use("/api", apiRouter);
 
 // catch-all error handler
 app.get("*", (req, res) => {
